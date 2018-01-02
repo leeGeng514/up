@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务队列</title>
+</head>
+<body>
+<script>
+    //js是单线程语言  同步任务优先于异步任务
+    console.log(1);
+    setTimeout(function () {
+        console.log(2);
+    },0);
+    console.log(3);
+    //打印结果1,3,2
+    //异步任务有:setTimeout,setInterval,ajax,promise等等...
+
+    for(var i=0;i<4;i++){
+        setTimeout(function () {
+            console.log(i);  //输出为:4个4,因为for为同步任务,当进入循环体内，setTimeout被挂起为异步任务,
+        },0);                // 当setTimeout函数触发时，for循环已经执行完毕，i=4,所有打印为4个4
+    }
+    //如果将var改成let 声明的变量，会产生块级作用域。下面代码如果为let声明，打印结果则为0,1,2,3
+</script>
+</body>
+</html>

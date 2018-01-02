@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>文档片段:documentFragment</h1>
+    <ul id="ul1"></ul>
+    <ul id="ul2"></ul>
+<script>
+    //创建一个文档片段
+    console.dir(document.createDocumentFragment());
+    //将创建的li添加到文档片段内，添加完成后一次性添加到ul，提高性能
+    console.time();
+    let fragment=document.createDocumentFragment();
+    for(let i=0;i<50000;i++){
+        fragment.appendChild(document.createElement("li"));
+    }
+    ul1.appendChild(fragment);
+    console.timeEnd();
+    //不使用文档片段
+    console.time();
+    for(let i=0;i<50000;i++){
+        ul2.appendChild(document.createElement("li"));
+    }
+    console.timeEnd();
+</script>
+</body>
+</html>
